@@ -32,7 +32,7 @@
     --hair:rgba(255,255,255,.08);
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-  html,body{height:100%;background:var(--bg);}
+  html,body{background:var(--bg);}
   body{
     font-family:"Inter",system-ui,-apple-system,sans-serif;
     color:var(--ink);min-height:100dvh;
@@ -196,29 +196,6 @@
   .btn.primary .arr{color:#0a0a0a;}
   .btn.primary:hover{background:#a4e832;}
 
-  /* ---------- LOCATIONS ---------- */
-  .locs{
-    margin:24px 20px 0;padding-top:22px;
-    border-top:1px solid var(--hair);
-  }
-  .locs-head{
-    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;
-    color:var(--ash);margin-bottom:14px;display:flex;justify-content:space-between;
-  }
-  .locs-head em{color:var(--neon);font-style:normal;}
-  .loc{
-    display:grid;grid-template-columns:28px 1fr auto;gap:14px;
-    align-items:baseline;padding:14px 0;border-bottom:1px solid var(--hair);
-    text-decoration:none;color:var(--ink);
-    transition:color .2s ease;
-  }
-  .loc:last-child{border-bottom:none;}
-  .loc:hover .nm{color:var(--neon);}
-  .loc .idx{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--neon);letter-spacing:.1em;}
-  .loc .nm{font-family:"Anton",Impact,sans-serif;font-style:italic;font-size:19px;letter-spacing:.03em;text-transform:uppercase;
-    transition:color .2s ease;}
-  .loc .ph{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ash);font-variant-numeric:tabular-nums;}
-
   /* ---------- FOOTER ---------- */
   .foot{
     padding:32px 20px 36px;text-align:center;
@@ -266,11 +243,6 @@
   <section class="cards" id="cards"></section>
 
   <section class="links" id="links"></section>
-
-  <section class="locs">
-    <div class="locs-head"><span>// <em>Филиалы</em></span><span id="locsCount"></span></div>
-    <div id="locs"></div>
-  </section>
 
   <footer class="foot" id="foot"></footer>
 
@@ -373,13 +345,6 @@ document.getElementById('links').innerHTML = links.map((l,i)=>`
     <span class="l"><span class="ic">${icons[l.type]||icons.map}</span><span class="nm">${l.label}</span></span>
     <span class="arr">→</span>
   </a>`).join('');
-
-/* ----- locations ----- */
-document.getElementById('locsCount').textContent = `${String(locations.length).padStart(2,'0')} TOTAL`;
-document.getElementById('locs').innerHTML = locations.map((l,i)=>{
-  const tel = l.phone.replace(/[^\d+]/g,'');
-  return `<a class="loc" href="tel:${tel}"><span class="idx">${String(i+1).padStart(2,'0')}</span><span class="nm">${l.name}</span><span class="ph">${l.phone}</span></a>`;
-}).join('');
 
 /* ----- footer ----- */
 document.getElementById('foot').innerHTML = footerNote;
